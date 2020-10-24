@@ -11,7 +11,7 @@ const userModel = require('../models/user')//esta requiriendo un modelo
 exports.create = (req, res) => {
     // if(!req.body){ estamos negando la condicion si no hay datos 
 
-    //cvalidamos que todos los datos del formulario esten llenos 
+    //validamos que todos los datos del formulario esten llenos 
     if (Object.entries(req.body).length == 0) {
         return res.status(400).send({
             message: 'los datos son obligatorios'

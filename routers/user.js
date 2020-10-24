@@ -5,6 +5,6 @@ module.exports = (app) => {//Exportar una funcion //recibimos el parametro app
     //se indica cual sera la ruta
     //cuando se reconosca la ruta ira al metodo de controlador user/create
 
-    app.put('/user/update/:id', user.update) 
+    app.put('/user/update/:id', user.update)
     //creamos una nueva ruta por el metodo put para modificar
 }

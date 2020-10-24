@@ -9,6 +9,7 @@ app.use(bodyParse.json())//todos los elementos que se le envian a la API sean ti
 conectDB()//estamos ejecutando el modulo de nuestra conexion a la base de datos
 require('./routers/user')(app)//para crear rutas necesitamos express
 require('./routers/genre')(app)
+require('./routers/book')(app)
 //metodo app.listen = escuchar
 //puerto 3000 es al puerto que nos vamos a conectar
 app.listen(3000, () => {// collback= una funcion dentro de otra

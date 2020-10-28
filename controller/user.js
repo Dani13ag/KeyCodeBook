@@ -79,7 +79,7 @@ exports.update = (req, res) => {
      * findByIdAndUpdate=Metodo de mongoose que perite buscar por id y actualizar un usuario
      * El id del usuario = req.params.id es el id que se envia por la URL
      */
-    userModel.findByIdAndUpdate(req.params.id, user)
+    userModel.findByIdAndUpdate(req.params.id, user, {new:true})
         .then(
             (userUpdate) => {
                 res.send(userUpdate)
@@ -91,4 +91,51 @@ exports.update = (req, res) => {
                 })
             }
         )
+}
+
+/**
+ * Metodo para obtener todos los usuarios
+ */
+exports.getAll=(req,res)=>{
+    userModel.find()
+    .then((users)=>{res.send(users)})
+    .catch(
+        (error)=>{
+            res.status(500).send({
+                message:error.message
+            })
+        }
+    )
+}
+
+/**
+ * Metodo para obtener un usuario
+ */
+exports.getOne=(req,res)=>{
+    userModel.findById(req.params.id)//findById Busque por el id
+ 
+    .then((user)=>{res.send(user)})
+    .catch(
+        (error)=>{
+            res.status(500).send({
+                message:error.message
+            })
+        }
+    )
+}
+
+/**
+ * Metodo para eliminar un usuario
+*/
+exports.deleteOne=(req,res)=>{
+    userModel.findByIdAndRemove(req.params.id)
+    .then((user)=>{res.send(user)})
+    .catch(
+        (error)=>{
+        res.status(500).send({
+            message:error.message
+        })
+    }
+
+    )
 }

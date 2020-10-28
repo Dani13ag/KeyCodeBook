@@ -1,7 +1,8 @@
 const GenreModel = require('../models/genre')//esta requiriendo un modelo
 
-/*METODO PARA CREAR UN NUEVO GENERO CON
-LOS PARAMETROS REQ Y RES*/
+/**
+ * Metodo para crear un nuevo genero
+*/
 exports.create = (req, res) => {
     if (Object.entries(req.body).length == 0) {
         return res.status(400).send({
@@ -22,4 +23,42 @@ exports.create = (req, res) => {
                 message: error.message//este mensaje devolvera el error que mongoose tiene 
             })
         })
+}
+
+/**
+ * Metodo para modificar 
+ */
+exports.update = (req, res) => {
+    /**
+     * Validamos que todos los campos del formulario esten llenos 
+     */
+    if (Object.entries(req.body).length == 0) {
+        return res.status(400).send({
+            message: 'los datos son obligatorios'
+
+        })
+    }
+
+
+    const genre = {
+        name: req.body.name,
+        status: req.body.status
+    }
+
+    /**
+     * findByIdAndUpdate=Metodo de mongoose que perite buscar por id y actualizar un genero
+     * El id del genero= req.params.id es el id que se envia por la URL
+     */
+    GenreModel.findByIdAndUpdate(req.params.id, genre, {new:true})
+        .then(
+            (genreUpdate) => {
+                res.send(genreUpdate)
+            }
+        ).catch(
+            (error) => {
+                res.status(500).send({
+                    message: error.message
+                })
+            }
+        )
 }

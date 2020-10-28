@@ -7,4 +7,7 @@ module.exports = (app) => {//Exportar una funcion //recibimos el parametro app
 
     app.put('/user/update/:id', user.update)
     //creamos una nueva ruta por el metodo put para modificar
+    app.get('/user/getAll',user.getAll)
+    app.get('/user/getOne/:id',user.getOne)
+    app.delete('/user/deleteOne/:id',user.deleteOne)
 }

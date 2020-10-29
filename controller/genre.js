@@ -62,3 +62,37 @@ exports.update = (req, res) => {
             }
         )
 }
+
+/**
+ * Metodo para listar todos los generos 
+ */
+exports.getAll=(req,res)=>{
+    GenreModel.find()
+    .then(
+        (genres)=>{
+            res.send(genres)
+        }
+    ).catch(
+        (error)=>{
+            res.status(500).send({
+                message:error.message
+            })
+        }
+    )
+}
+
+/**
+ * Metodo para listar solo un genero
+ */
+exports.getOne=(req,res)=>{
+    GenreModel.findById(req.params.id)
+    .then(
+        (genre)=>{res.send(genre)})
+    .catch(
+        (error)=>{
+            res.status(500).send({
+                message:error.message
+            })
+        }
+    )
+}
